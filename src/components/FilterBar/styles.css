@@ -1,0 +1,16 @@
+nav {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+}
+
+.selectFilters {
+    width: 100%;
+}
+
+.selectFilters select {
+    display: inline-block;
+    width: 50%;
+    padding: auto;
+}
