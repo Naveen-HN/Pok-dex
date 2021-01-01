@@ -2,6 +2,7 @@ nav {
     display: block;
     margin-left: auto;
     margin-right: auto;
+    margin-top: -40px;
     width: 50%;
 }
 
