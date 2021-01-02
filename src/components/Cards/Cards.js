@@ -70,7 +70,7 @@ export default function Cards({ data }) {
           <center>
             <h5 className="card-title">{data.name}</h5>
           </center>
-          <Speech styles={style} text={data.name} />
+          <Speech styles={style} text={data.name} voice="Fiona" />
         </div>
       </div>
       <div
