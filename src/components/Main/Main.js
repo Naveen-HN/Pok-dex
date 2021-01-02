@@ -6,13 +6,14 @@ export default function Main() {
   const [data, setData] = useState([]);
   let query = {
     query: `query{
-    pokemons(first: 20 ){
-      id
-      number
-      name
-      types
-    }
-  }`,
+      pokemons(first: 151){
+        number
+        name
+        types
+      image
+      classification
+      }
+    }`,
   };
   let handleFetch = () => {
     let myHeader = new Headers();
