@@ -1,8 +1,39 @@
 import React, { useState, useEffect } from "react";
 import ReactCardFlip from "react-card-flip";
+import Speech from "react-speech";
 
 export default function Cards({ data }) {
   const [isFlipped, setIsFlipped] = useState(false);
+
+  const style = {
+    container: {},
+    text: {},
+    buttons: {},
+    play: {
+      hover: {
+        backgroundColor: "GhostWhite",
+      },
+      button: {
+        borderTop: "10px solid white",
+        borderBottom: "10px solid white",
+        borderLeft: "20px solid black",
+        height: "0px",
+        backgroundColor: "red",
+      },
+    },
+    pause: {
+      hover: {},
+      button: {},
+    },
+    stop: {
+      hover: {},
+      button: {},
+    },
+    resume: {
+      hover: {},
+      button: {},
+    },
+  };
 
   useEffect(() => {
     let flipTimeout;
@@ -25,7 +56,6 @@ export default function Cards({ data }) {
           boxShadow:
             "0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0, 0, 0, 0.19)",
         }}
-        onClick={() => setIsFlipped(!isFlipped)}
       >
         <span class="badge badge-info" style={{ width: "30px", float: "left" }}>
           {data.number}
@@ -35,14 +65,12 @@ export default function Cards({ data }) {
             src={data.image}
             alt="pokemon"
             style={{ height: "7rem", width: "7.5rem", margin: "auto" }}
+            onClick={() => setIsFlipped(!isFlipped)}
           />
           <center>
             <h5 className="card-title">{data.name}</h5>
           </center>
-          <div class="custom-control custom-switch">
-            <input type="checkbox" class="custom-control-input" />
-            <label class="custom-control-label">Captured</label>
-          </div>
+          <Speech styles={style} text={data.name} />
         </div>
       </div>
       <div

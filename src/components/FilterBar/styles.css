@@ -9,10 +9,6 @@ nav {
 
 .selectFilters {
     width: 100%;
-}
-
-.selectFilters select {
-    display: inline-block;
-    width: 50%;
-    padding: auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
 }
