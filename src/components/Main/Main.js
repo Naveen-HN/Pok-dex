@@ -12,6 +12,17 @@ export default function Main() {
         types
       image
       classification
+     attacks{
+      special {
+        name
+      }
+    }
+      height {
+        maximum
+      }
+      weight{
+        maximum
+      }
       }
     }`,
   };

@@ -201,7 +201,42 @@ export default function Cards({ data }) {
               }
             })}
           </h5>
-          <p className="card-text">Classfication: {data.classification}</p>
+          <p className="card-text">
+            <b className="card-text">Classfication:</b>{" "}
+            <span
+              class="badge badge-pill badge-dark"
+              style={{ background: "#c06c84" }}
+            >
+              {data.classification}
+            </span>
+            <br />
+            <b className="card-text">Height:</b>{" "}
+            <span
+              class="badge badge-pill  text-dark"
+              style={{ background: "#99b898" }}
+            >
+              {data.height.maximum}
+            </span>
+            <br />
+            <b className="card-text">Weight:</b>{" "}
+            <span
+              class="badge badge-pill badge-dark"
+              style={{ background: "#cc527a" }}
+            >
+              {data.weight.maximum}
+            </span>
+            <br />
+            <b className="card-text">Special Attacks:</b>{" "}
+            {data.attacks.special.map((att, i) => (
+              <span
+                key={i}
+                class="badge badge-pill badge-dark"
+                style={{ background: "#355C7D" }}
+              >
+                {att.name}
+              </span>
+            ))}
+          </p>
         </div>
       </div>
     </ReactCardFlip>
