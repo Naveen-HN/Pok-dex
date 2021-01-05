@@ -3,7 +3,7 @@ import CapturedFilter from "../CapturedFilter/CapturedFilter";
 import TypeFilter from "../TypeFilter/TypeFilter";
 import "./styles.css";
 
-export default function Filterbar() {
+export default function Filterbar(props) {
   return (
     <nav
       className="navbar navbar-light bg-light"
@@ -12,8 +12,8 @@ export default function Filterbar() {
       }}
     >
       <div className="selectFilters">
-        <TypeFilter />
-        <CapturedFilter />
+        <TypeFilter data={props.data} />
+        <CapturedFilter data={props.data} />
       </div>{" "}
     </nav>
   );
