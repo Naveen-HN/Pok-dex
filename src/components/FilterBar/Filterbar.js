@@ -12,8 +12,11 @@ export default function Filterbar(props) {
       }}
     >
       <div className="selectFilters">
-        <TypeFilter data={props.data} />
-        <CapturedFilter data={props.data} />
+        <TypeFilter data={props.data} />{" "}
+        <CapturedFilter
+          data={props.data}
+          handleCapturedChange={props.handleCapturedChange}
+        />{" "}
       </div>{" "}
     </nav>
   );

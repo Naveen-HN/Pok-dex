@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import ReactCardFlip from "react-card-flip";
 import Speech from "react-speech";
 
-export default function Cards({ data }) {
+export default function Cards(props) {
   const [isFlipped, setIsFlipped] = useState(false);
 
   const style = {
@@ -58,29 +58,30 @@ export default function Cards({ data }) {
         }}
       >
         <span class="badge badge-info" style={{ width: "30px", float: "left" }}>
-          {data.number}
+          {props.data.number}
         </span>
         <div className="card-body">
           <img
-            src={data.image}
+            src={props.data.image}
             alt="pokemon"
             style={{ height: "7rem", width: "7.5rem", margin: "auto" }}
             onClick={() => setIsFlipped(!isFlipped)}
           />
           <center>
-            <h5 className="card-title">{data.name}</h5>
+            <h5 className="card-title">{props.data.name}</h5>
           </center>
           <div class="custom-control custom-switch">
             <input
               type="checkbox"
               class="custom-control-input"
-              id={data.number}
+              id={props.data.number}
+              onClick={(e) => props.handleToggleClick(e)}
             />
-            <label class="custom-control-label" for={data.number}>
+            <label class="custom-control-label" for={props.data.number}>
               Captured
             </label>
             <span> </span>
-            <Speech styles={style} text={data.name} voice="Fiona" />
+            <Speech styles={style} text={props.data.name} voice="Fiona" />
           </div>
         </div>
       </div>
@@ -99,7 +100,7 @@ export default function Cards({ data }) {
         <div className="card-body">
           <h5 className="card-text">
             Type:{" "}
-            {data.types.map((type, index) => {
+            {props.data.types.map((type, index) => {
               switch (type) {
                 case "Grass":
                   return (
@@ -246,7 +247,7 @@ export default function Cards({ data }) {
               class="badge badge-pill badge-dark"
               style={{ background: "#c06c84" }}
             >
-              {data.classification}
+              {props.data.classification}
             </span>
             <br />
             <b className="card-text">Height:</b>{" "}
@@ -254,7 +255,7 @@ export default function Cards({ data }) {
               class="badge badge-pill  text-dark"
               style={{ background: "#99b898" }}
             >
-              {data.height.maximum}
+              {props.data.height.maximum}
             </span>
             <br />
             <b className="card-text">Weight:</b>{" "}
@@ -262,11 +263,11 @@ export default function Cards({ data }) {
               class="badge badge-pill badge-dark"
               style={{ background: "#cc527a" }}
             >
-              {data.weight.maximum}
+              {props.data.weight.maximum}
             </span>
             <br />
             <b className="card-text">Special Attacks:</b>{" "}
-            {data.attacks.special.map((att, i) => (
+            {props.data.attacks.special.map((att, i) => (
               <span
                 key={i}
                 class="badge badge-pill badge-dark"

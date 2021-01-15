@@ -7,7 +7,11 @@ export default function Main(props) {
     <div className="cards-content">
       {" "}
       {props.data.map((item, index) => (
-        <Cards data={item} key={index} />
+        <Cards
+          data={item}
+          key={index}
+          handleToggleClick={props.handleToggleClick}
+        />
       ))}{" "}
     </div>
   );
