@@ -52,8 +52,16 @@ function App() {
   }, []);
 
   const handleCapturedChange = (e) => {
+    e.preventDefault();
     let capturedPokemons = data;
-    console.log(capturedPokemons);
+    console.log(e.target.value);
+    if (e.target.value === "Captured") {
+      setData(capturedPokemons.filter((item) => item.captured === true));
+    } else if (e.target.value === "Not Captured") {
+      setData(capturedPokemons.filter((item) => item.captured === false));
+    } else if (e.target.value === "all") {
+      setData(capturedPokemons);
+    }
   };
 
   const handleToggleClick = (e) => {
@@ -64,10 +72,24 @@ function App() {
     console.log(captured);
   };
 
+  const handleTypeChange = (e) => {
+    console.log(e.target.value);
+    let pokemonTypes = data;
+    if (pokemonTypes.map((item) => item.types.includes(e.target.value))) {
+      setData(
+        pokemonTypes.filter((item) => item.types.includes(e.target.value))
+      );
+    }
+  };
+
   return (
     <div>
       <Header />
-      <FilterBar data={data} handleCapturedChange={handleCapturedChange} />{" "}
+      <FilterBar
+        data={data}
+        handleCapturedChange={handleCapturedChange}
+        handleTypeChange={handleTypeChange}
+      />{" "}
       <Main data={data} handleToggleClick={handleToggleClick} />{" "}
     </div>
   );

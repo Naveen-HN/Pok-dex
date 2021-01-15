@@ -9,10 +9,14 @@ export default function CapturedFilter(props) {
         style={{
           width: "100%",
         }}
-        onChange={props.handleCapturedChange}
+        onChange={(e) => props.handleCapturedChange(e)}
       >
-        <option defaultValue="1"> All </option> <option> Captured </option>{" "}
-        <option> Not Captured </option>{" "}
+        <option defaultValue="1" value="All">
+          {" "}
+          All{" "}
+        </option>{" "}
+        <option value="Captured"> Captured </option>{" "}
+        <option value="Not Captured"> Not Captured </option>{" "}
       </select>{" "}
     </div>
   );
