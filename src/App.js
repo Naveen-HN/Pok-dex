@@ -4,8 +4,10 @@ import Header from "./components/Header/Header";
 import FilterBar from "./components/FilterBar/Filterbar";
 import Main from "./components/Main/Main";
 
-function App() {
+const App = () => {
   const [data, setData] = useState([]);
+  const [filteredData, setFilteredData] = useState([]);
+  const [capturedFilteredData, setCapData] = useState([]);
 
   let query = {
     query: `query{
@@ -43,6 +45,7 @@ function App() {
           Object.assign(item, { captured: false })
         );
         setData(newData);
+        setFilteredData(newData);
       })
       .catch((err) => console.log(err));
   };
@@ -53,30 +56,38 @@ function App() {
 
   const handleCapturedChange = (e) => {
     e.preventDefault();
-    let capturedPokemons = data;
+    let capturedPokemons = capturedFilteredData;
     console.log(e.target.value);
     if (e.target.value === "Captured") {
-      setData(capturedPokemons.filter((item) => item.captured === true));
+      setFilteredData(
+        capturedPokemons.filter((item) => item.captured === true)
+      );
     } else if (e.target.value === "Not Captured") {
-      setData(capturedPokemons.filter((item) => item.captured === false));
-    } else if (e.target.value === "all") {
-      setData(capturedPokemons);
+      setFilteredData(
+        capturedPokemons.filter((item) => item.captured === false)
+      );
+    } else if (e.target.value === "All") {
+      setFilteredData(data);
     }
   };
 
   const handleToggleClick = (e) => {
     let captured = data.map((item) =>
-      item.number === e.target.id ? { ...item, captured: true } : item
+      item.number === e.target.id ? { ...item, captured: !item.captured } : item
     );
-    setData(captured);
+    setCapData(captured);
     console.log(captured);
   };
 
   const handleTypeChange = (e) => {
     console.log(e.target.value);
     let pokemonTypes = data;
-    if (pokemonTypes.map((item) => item.types.includes(e.target.value))) {
-      setData(
+    if (e.target.value === "All") {
+      setFilteredData(data);
+    } else if (
+      pokemonTypes.map((item) => item.types.includes(e.target.value))
+    ) {
+      setFilteredData(
         pokemonTypes.filter((item) => item.types.includes(e.target.value))
       );
     }
@@ -86,13 +97,12 @@ function App() {
     <div>
       <Header />
       <FilterBar
-        data={data}
         handleCapturedChange={handleCapturedChange}
         handleTypeChange={handleTypeChange}
       />{" "}
-      <Main data={data} handleToggleClick={handleToggleClick} />{" "}
+      <Main data={filteredData} handleToggleClick={handleToggleClick} />{" "}
     </div>
   );
-}
+};
 
 export default App;
